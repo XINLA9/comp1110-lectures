@@ -1,4 +1,4 @@
-package comp1110.X01;
+package comp1110.lectures.X01;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

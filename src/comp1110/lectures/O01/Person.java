@@ -1,4 +1,4 @@
-package O01;
+package comp1110.lectures.O01;
 
 public class Person extends Object { //this happens automatically
     private  int age;
@@ -17,6 +17,8 @@ public class Person extends Object { //this happens automatically
         this.name = name;
         this.age = age;
     }
+
+
 
     @Override
     public String toString() {

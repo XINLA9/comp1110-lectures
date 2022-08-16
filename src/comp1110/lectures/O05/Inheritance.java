@@ -1,4 +1,4 @@
-package comp1110.O05;
+package comp1110.lectures.O05;
 
 public class Inheritance {
     public static void main(String[] args) {
