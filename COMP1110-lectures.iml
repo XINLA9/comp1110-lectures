@@ -16,7 +16,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="Javafx" level="project" />
     <orderEntry type="library" name="JUnit5" level="project" />
   </component>
 </module>
