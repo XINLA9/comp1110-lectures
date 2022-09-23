@@ -1,4 +1,4 @@
-package O01;
+package comp1110.lectures.O01;
 
 public class Person extends Object { //this happens automatically
     private  int age;

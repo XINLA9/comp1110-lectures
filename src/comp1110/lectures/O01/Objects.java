@@ -1,4 +1,4 @@
-package O01;
+package comp1110.lectures.O01;
 
 public class Objects {
     public static void main(String[] args) {
