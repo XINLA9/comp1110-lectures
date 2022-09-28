@@ -1,5 +1,7 @@
 package comp1110.lectures.A01;
 
+import java.util.StringJoiner;
+
 public class ArrayList<T> implements List<T> {
     private T[] elements = null;
     int listSize = 0;
@@ -33,7 +35,9 @@ public class ArrayList<T> implements List<T> {
      * @param index Index of the value to remove.
      */
     public void remove(int index) {
-        // FIXME
+        for (int i = index; i + 1 < listSize; i++)
+            elements[i] = elements[i + 1];
+        listSize -= 1;
     }
 
     /**
@@ -41,7 +45,11 @@ public class ArrayList<T> implements List<T> {
      * List elements are indexed 0 .. length-1.
      * @return The value at the specified index.
      */
-    public T get(int index) {
+    public T get(int index) throws List.InvalidIndex {
+        if (elements == null)
+            throw new InvalidIndex(index, 0);
+        if (index < 0 || index > listSize - 1)
+            throw new InvalidIndex(index, listSize);
         return elements[index];
     }
 
@@ -56,14 +64,21 @@ public class ArrayList<T> implements List<T> {
      * Reverse the order of the elements of the list.
      */
     public void reverse() {
-        // FIXME
+        for (int i = 0; i < Math.floorDiv(listSize, 2); i++) {
+            T tmp = elements[i];
+            elements[i] = elements[listSize - 1 - i];
+            elements[listSize - 1 - i] = tmp;
+        }
     }
 
     /**
      * @return A string representation of the list.
      */
     public String toString() {
-        return ""; // FIXME
+        StringJoiner joiner = new StringJoiner(" ");
+        for (int i = 0; i < listSize; i++)
+            joiner.add(elements[i].toString());
+        return joiner.toString();
     }
 
 }

@@ -2,6 +2,19 @@ package comp1110.lectures.A01;
 
 public interface List<T> {
 
+	public class InvalidIndex extends RuntimeException {
+		int index;
+		int size;
+
+		public InvalidIndex(int index, int size) {
+			this.index= index;
+			this.size = size;
+		}
+
+		public String toString() {
+			return "InvalidIndex: " + index + " for list of size " + size;
+		}
+	}
 	/*
 	 * We would like to specify that any implementation of the List
 	 * interface must have a way to create an empty list, but there
@@ -23,7 +36,7 @@ public interface List<T> {
 	 * List elements are indexed 0 .. length-1.
 	 * @param index Index of the value to remove.
 	 */
-	void remove(int index);
+	void remove(int index) throws InvalidIndex;
 
 	/**
 	 * @param index
@@ -31,7 +44,7 @@ public interface List<T> {
 	 * @return The value at the specified index.
 	 * Method should raise exception if index is negative or outside list size
 	 */
-	T get(int index) throws ArrayIndexOutOfBoundsException;
+	T get(int index) throws InvalidIndex;
 
 	/**
 	 * @return the current size of the list.
