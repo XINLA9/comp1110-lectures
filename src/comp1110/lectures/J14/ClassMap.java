@@ -1,6 +1,6 @@
 package comp1110.J14;
 
-import comp1110.O02.COMP1110Student;
+import comp1110.lectures.O02.COMP1110Student;
 
 import java.util.HashMap;
 import java.util.Map;
