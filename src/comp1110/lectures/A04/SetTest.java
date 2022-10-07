@@ -69,24 +69,24 @@ public class SetTest {
 	assertEquals(set.size(), 5);
     }
 
-	public void stressTest(String sourceFile) {
-		var set = makeEmpty();
-		int n_added = 0;
-		try {
-			FileReader fr = new FileReader(sourceFile);
-			final BufferedReader br = new BufferedReader(fr);
-			String line;
-			while ((line = br.readLine()) != null) {
-				set.add(line);
-				n_added += 1;
-			}
-			fr.close();
-			System.out.println(n_added + " names added, set size = " + set.size());
-		}
-		catch (IOException e) {
-			System.out.println("exception " + e + " reading file");
-		}
-	}
+//	public void stressTest(String sourceFile) {
+//		var set = makeEmpty();
+//		int n_added = 0;
+//		try {
+//			FileReader fr = new FileReader(sourceFile);
+//			final BufferedReader br = new BufferedReader(fr);
+//			String line;
+//			while ((line = br.readLine()) != null) {
+//				set.add(line);
+//				n_added += 1;
+//			}
+//			fr.close();
+//			System.out.println(n_added + " names added, set size = " + set.size());
+//		}
+//		catch (IOException e) {
+//			System.out.println("exception " + e + " reading file");
+//		}
+//	}
 
 	public static void main(String[] args) {
 	SetTest tester = new SetTest();

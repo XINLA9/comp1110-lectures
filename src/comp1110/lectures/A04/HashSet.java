@@ -5,6 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Slightly cleaned up version of the HashSet implementation of the Set ADT
+ * (post Friday week 9 lecture). Now uses LinkedList operations (contains,
+ * add, remove) consistently, and
+ */
 public class HashSet<T> implements Set<T> {
 
     LinkedList<T>[] table;
@@ -12,19 +17,18 @@ public class HashSet<T> implements Set<T> {
     final int DEFAULT_CAPACITY = 20;
 
     public HashSet() {
-        var tmp = new LinkedList[DEFAULT_CAPACITY];
-        table = (LinkedList<T>[]) tmp;
-        for (int i = 0; i < table.length; i++)
-            table[i] = new LinkedList<T>();
+        table = initTable(DEFAULT_CAPACITY);
         n_entries = 0;
     }
 
-    // find an element in the table; return null if not present
-    private T find(T element, int bucket) {
-        for (var el : table[bucket])
-            if (el.equals(element))
-                return el;
-        return null;
+    /* Util method to create an initialised table (array of linked lists),
+    since this is done both in the constructor and the rehash method.
+     */
+    private LinkedList<T>[] initTable(int size) {
+        var table = (LinkedList<T>[]) (new LinkedList[size]);
+        for (int i = 0; i < table.length; i++)
+            table[i] = new LinkedList<T>();
+        return table;
     }
 
     public int getBucket(T element, int tSize) {
@@ -39,21 +43,22 @@ public class HashSet<T> implements Set<T> {
      */
     public void add(T element) {
         int bucket = getBucket(element, table.length);
-        T already_in = find(element, bucket);
-        if (already_in == null) {
-            table[bucket].add(element);
-            n_entries += 1;
-        }
+        if (table[bucket].contains(element)) return;
+        table[bucket].add(element);
+        n_entries += 1;
         rehashIfNeeded();
         checkStats();
     }
 
+    /* Check if table utilisation rate (number of keys stored / table capacity)
+    is over a threshold (currently set to 1) and if so, double table capacity and
+    rehash all elements.
+    */
     private void rehashIfNeeded() {
         double utilrate = n_entries / table.length;
         if (utilrate < 1) return;
-        var new_table = (LinkedList<T>[]) (new LinkedList[2 * table.length]);
-        for (int i = 0; i < new_table.length; i++)
-            new_table[i] = new LinkedList<T>();
+        var new_table = initTable(2 * table.length);
+        // rehash stored keys into new_table
         for (int b = 0; b < table.length; b++) {
             for (var el : table[b]) {
                 int new_b = getBucket(el, new_table.length);
@@ -73,6 +78,7 @@ public class HashSet<T> implements Set<T> {
                 maxLen = table[i].size();
             sumLen += table[i].size();
         }
+        assert (sumLen == n_entries);
         System.out.println("max bucket length: " + maxLen);
         System.out.println("mean bucket length: " + (sumLen/(double)table.length));
     }
@@ -96,8 +102,7 @@ public class HashSet<T> implements Set<T> {
      */
     public boolean contains(T element) {
         int bucket = getBucket(element, table.length);
-        T found = find(element, bucket);
-        return (found != null);
+        return table[bucket].contains(element);
     }
 
     /**
@@ -114,6 +119,9 @@ public class HashSet<T> implements Set<T> {
         return "";
     }
 
+    /* Test implementation's handling of large number of add operations,
+    by reading keys from a file (assumed to be one key per line).
+     */
     public static void stressTest(String sourceFile) {
         var set = new HashSet<String>();
         int n_added = 0;
@@ -133,6 +141,7 @@ public class HashSet<T> implements Set<T> {
         }
     }
 
+    // main method to call stressTest
     public static void main(String[] args) {
         stressTest("words/plants.txt");
     }
