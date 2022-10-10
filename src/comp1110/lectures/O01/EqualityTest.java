@@ -4,7 +4,7 @@ public class EqualityTest {
 
     public static void main(String[] args) {
 	//String p1 = "John";
-	// String p2 = "John";
+	//String p2 = "john";
 	//String p2 = new String("John II");
 
 	Person p1 = new Person("John", 41);
@@ -20,6 +20,9 @@ public class EqualityTest {
 	// subclasses can override
 	System.out.println("p1.hashCode() == " + p1.hashCode());
 	System.out.println("p2.hashCode() == " + p2.hashCode());
+
+		System.out.println("p1.compareTo(p2) == " + p1.compareTo(p2));
+		System.out.println("p2.compareTo(p1) == " + p2.compareTo(p1));
     }
 
 }

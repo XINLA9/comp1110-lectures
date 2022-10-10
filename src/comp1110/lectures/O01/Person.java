@@ -1,6 +1,6 @@
 package comp1110.lectures.O01;
 
-public class Person { // implements Comparable<Person> {
+public class Person implements Comparable<Person> {
     private int age;
     private String name;
 	
@@ -38,11 +38,11 @@ public class Person { // implements Comparable<Person> {
 	return name.hashCode() + age;
     }
 
-//    @Override
-//    public int compareTo(Person other) {
-//	int c1 = name.compareTo(other.name);
-//	if (c1 != 0) return c1;
-//	return age - other.age;
-//    }
+    @Override
+    public int compareTo(Person other) {
+    	int c1 = name.compareTo(other.name);
+	    if (c1 != 0) return c1;
+	    return age - other.age;
+    }
     
 }

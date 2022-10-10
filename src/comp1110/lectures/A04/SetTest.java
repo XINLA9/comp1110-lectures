@@ -1,5 +1,6 @@
 package comp1110.lectures.A04;
 
+import comp1110.lectures.A05.BSTSet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,7 +13,8 @@ public class SetTest {
 
     private Set<String> makeEmpty() {
 		//return null;
-		return new HashSet<String>();
+		//return new HashSet<String>();
+		return new BSTSet<String>();
     }
 
     @Test
