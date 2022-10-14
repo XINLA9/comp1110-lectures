@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * Slightly cleaned up version of the HashSet implementation of the Set ADT
  * (post Friday week 9 lecture). Now uses LinkedList operations (contains,
- * add, remove) consistently, and
+ * add, remove) consistently.
  */
 public class HashSet<T> implements Set<T> {
 
