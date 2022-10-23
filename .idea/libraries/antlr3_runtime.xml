@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="antlr3-runtime">
+    <CLASSES>
+      <root url="jar:///usr/share/java/antlr3-runtime.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
