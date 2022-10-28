@@ -47,6 +47,10 @@ public class Q2Checksum {
    * @param checksum if true, include checksums in the output file
    */
   public static void checksum(String input, String output, boolean checksum) {
+    // note: here we have written two completely different pieces of code for the
+    // two parts (checksum false and checksum true); clearly there is some overlap,
+    // so a neater implementation would factor out the common parts.
+
     // part 1: if checksum is false, we simply copy the contents of the input file
     // to the output file.
     if (!checksum) {
